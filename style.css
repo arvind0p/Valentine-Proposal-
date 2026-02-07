@@ -1,35 +1,131 @@
-/* buttons wrapper */
-.buttons {
-  position: relative;
-  height: 140px;
-  margin-top: 20px;
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Segoe UI",sans-serif;
 }
 
-/* common button size — BOTH SAME */
-.buttons button {
-  width: 140px;
-  height: 46px;
-  border-radius: 30px;
-  border: none;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  position: absolute;
+html,body{
+  width:100%;
+  height:100%;
 }
 
-/* YES */
-#yesBtn {
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 0;
-  background: linear-gradient(135deg, #ff4d9d, #ff0066);
-  color: #fff;
+body{
+  background:radial-gradient(circle at center,#2a001a,#000);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
 }
 
-/* NO */
-#noBtn {
-  left: 10px;
-  top: 0;
-  background: #333;
-  color: #ccc;
+/* center wrapper */
+.wrapper{
+  width:100%;
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* main card */
+.card{
+  width:360px;
+  background:#0d0d0d;
+  padding:40px 30px;
+  border-radius:22px;
+  text-align:center;
+  box-shadow:0 0 45px rgba(255,0,120,.6);
+  position:relative;
+}
+
+/* title */
+h1{
+  color:#ff4d9d;
+  font-size:22px;
+  line-height:1.4;
+  margin-bottom:35px;
+  text-shadow:0 0 15px rgba(255,77,157,.9);
+}
+
+/* buttons area */
+.buttons{
+  position:relative;
+  height:140px;
+}
+
+/* SAME SIZE GUARANTEE */
+.buttons button{
+  width:140px;
+  height:46px;
+  border-radius:30px;
+  border:none;
+  font-size:16px;
+  font-weight:600;
+  cursor:pointer;
+  position:absolute;
+}
+
+/* yes */
+#yesBtn{
+  left:50%;
+  transform:translateX(-50%);
+  bottom:0;
+  background:linear-gradient(135deg,#ff4d9d,#ff0066);
+  color:#fff;
+  box-shadow:0 0 18px rgba(255,0,120,.8);
+}
+
+/* no */
+#noBtn{
+  left:10px;
+  top:0;
+  background:#333;
+  color:#ddd;
+}
+
+/* countdown */
+#countdown{
+  margin-top:25px;
+}
+
+#countText{
+  font-size:56px;
+  color:#ff4d9d;
+}
+
+.by{
+  font-size:13px;
+  opacity:.8;
+  margin-bottom:6px;
+}
+
+.hidden{
+  display:none;
+}
+
+/* hearts */
+.heart{
+  position:fixed;
+  bottom:-20px;
+  font-size:22px;
+  animation:floatUp 6s linear forwards;
+  pointer-events:none;
+}
+
+@keyframes floatUp{
+  from{transform:translateY(0);opacity:1}
+  to{transform:translateY(-110vh);opacity:0}
+}
+
+/* whatsapp */
+.whatsapp{
+  margin-top:25px;
+  display:inline-block;
+  padding:14px 26px;
+  border-radius:30px;
+  background:#25D366;
+  color:#fff;
+  text-decoration:none;
+  font-weight:bold;
+  box-shadow:0 0 20px rgba(37,211,102,.7);
 }

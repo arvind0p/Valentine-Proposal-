@@ -3,14 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <title>For You ❤️</title>
+
+  <!-- Mobile fullscreen support -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- floating hearts -->
+  <!-- tap overlay (for fullscreen trigger) -->
+  <div id="tapToStart">
+    <p>Tap to begin ❤️</p>
+  </div>
+
+  <!-- hearts -->
   <div id="hearts"></div>
 
-  <div class="container">
+  <div class="container hidden" id="mainApp">
     <h1 id="title"></h1>
 
     <div class="buttons">

@@ -6,15 +6,31 @@ const countdown = document.getElementById("countdown");
 const countText = document.getElementById("countText");
 const card = document.getElementById("card");
 
-/* =========================
-   VALENTINE WEEK MESSAGES
-========================= */
+/* ===============================
+   ✏️ CHANGE NAME HERE ONLY
+================================ */
+const HER_NAME = "Rishika";   // ← yahan naam badlo bas
+
+/* ===============================
+   💘 DAILY VALENTINE MESSAGE
+================================ */
 function getDailyMessage() {
   const d = new Date();
   const day = d.getDate();
   const month = d.getMonth() + 1;
 
   if (month === 2) {
+    if (day === 14) {
+      return `❤️ Happy Valentine’s Day, ${HER_NAME} ❤️
+
+From the moment you entered my life,
+everything felt warmer and more meaningful.
+You are my calm, my smile, and my favourite thought.
+Today isn’t just Valentine’s Day —
+it’s a reminder that my heart chose you,
+and it will keep choosing you, always. 💖`;
+    }
+
     const messages = {
       7: "🌹 Rose Day — Every rose reminds me of you.",
       8: "💍 Propose Day — My heart has already chosen you.",
@@ -22,8 +38,7 @@ function getDailyMessage() {
       10: "🧸 Teddy Day — You are my comfort and my safe place.",
       11: "🤞 Promise Day — I promise to choose you every day.",
       12: "🤗 Hug Day — If I could, I’d hug you a little longer today.",
-      13: "💋 Kiss Day — One kiss, a thousand unspoken feelings.",
-      14: "❤️ Happy Valentine’s Day, my love ❤️"
+      13: "💋 Kiss Day — One kiss, a thousand unspoken feelings."
     };
 
     return messages[day] || "💖 You mean more to me than words can say.";
@@ -32,27 +47,32 @@ function getDailyMessage() {
   return "💖 You mean more to me than words can say.";
 }
 
-/* set initial title */
+/* set top message */
 title.innerText = getDailyMessage();
 
-/* =========================
-   NO BUTTON – FAST RUNNER
-========================= */
-function moveNoFast() {
-  const maxX = buttons.offsetWidth - noBtn.offsetWidth;
-  const maxY = buttons.offsetHeight - noBtn.offsetHeight;
+/* ===============================
+   😈 NO BUTTON – FULL SCREEN RUN
+================================ */
+function moveNoAnywhere() {
+  const padding = 10;
 
-  // FAST movement
-  noBtn.style.left = Math.random() * maxX + "px";
-  noBtn.style.top  = Math.random() * maxY + "px";
+  const maxX = window.innerWidth - noBtn.offsetWidth - padding;
+  const maxY = window.innerHeight - noBtn.offsetHeight - padding;
+
+  const randomX = Math.random() * maxX;
+  const randomY = Math.random() * maxY;
+
+  noBtn.style.position = "fixed"; // 🔥 screen edge allowed
+  noBtn.style.left = randomX + "px";
+  noBtn.style.top = randomY + "px";
 }
 
-noBtn.addEventListener("mouseenter", moveNoFast);
-noBtn.addEventListener("touchstart", moveNoFast);
+noBtn.addEventListener("mouseenter", moveNoAnywhere);
+noBtn.addEventListener("touchstart", moveNoAnywhere);
 
-/* =========================
-   YES → COUNTDOWN
-========================= */
+/* ===============================
+   💖 YES → COUNTDOWN
+================================ */
 yesBtn.addEventListener("click", () => {
   buttons.style.display = "none";
   countdown.classList.remove("hidden");
@@ -71,24 +91,24 @@ yesBtn.addEventListener("click", () => {
   }, 1000);
 });
 
-/* =========================
-   FINAL SCREEN (AUTO MESSAGE)
-========================= */
+/* ===============================
+   💌 FINAL SCREEN
+================================ */
 function showFinalScreen() {
+  const message = getDailyMessage().replace(/\n/g, "<br>");
+
   card.innerHTML = `
     <h1>❤️ It’s Always You ❤️</h1>
 
-    <p style="margin-top:18px;line-height:1.7;color:#eee;">
-      ${getDailyMessage()}
+    <p style="margin-top:18px;line-height:1.8;color:#eee;">
+      ${message}
       <br><br>
-      This Valentine week led me to one truth —
-      my heart chooses you, again and again.
       If this made you smile even a little,
       send me a message. 💖
     </p>
 
     <a class="whatsapp"
-      href="https://wa.me/919026217441?text=I%20said%20YES%20❤️%20Your%20Valentine%20page%20made%20me%20smile"
+      href="https://wa.me/919026217441?text=I%20said%20YES%20❤️%20${encodeURIComponent(HER_NAME)}%20Your%20Valentine%20page%20made%20me%20smile"
       target="_blank">
       💬 Message Arvind on WhatsApp
     </a>
@@ -97,9 +117,9 @@ function showFinalScreen() {
   startHearts();
 }
 
-/* =========================
-   FLOATING HEARTS
-========================= */
+/* ===============================
+   ❤️ FLOATING HEARTS
+================================ */
 function startHearts() {
   setInterval(() => {
     const h = document.createElement("div");

@@ -11,7 +11,7 @@ const card = document.getElementById("card");
 ================================ */
 function getNameFromURL() {
   const params = new URLSearchParams(window.location.search);
-  return params.get("name"); // null if not present
+  return params.get("name");
 }
 
 /* ===============================
@@ -21,62 +21,52 @@ function getDailyMessage() {
   const d = new Date();
   const day = d.getDate();
   const month = d.getMonth() + 1;
-
-  const nameFromURL = getNameFromURL();
-  const displayName = nameFromURL ? nameFromURL : "my love";
+  const name = getNameFromURL() || "my love";
 
   if (month === 2) {
-    // 💖 EXTRA ROMANTIC ONLY ON 14 FEB
     if (day === 14) {
-      return `❤️ Happy Valentine’s Day, ${displayName} ❤️
+      return `❤️ Happy Valentine’s Day, ${name} ❤️
 
 From the moment you came into my life,
 everything felt warmer and more meaningful.
-You are my calm, my smile, and my favourite thought.
-Today isn’t just Valentine’s Day —
-it’s a reminder that my heart chooses you,
-today and always. 💖`;
+My heart chooses you — today and always. 💖`;
     }
 
     const messages = {
       7: "🌹 Rose Day  Every rose reminds me of you.",
       8: "💍 Propose Day  My heart has already chosen you.",
       9: "🍫 Chocolate Day  Life feels sweeter with you.",
-      10: "🧸 Teddy Day  You are my comfort and my safe place.",
+      10: "🧸 Teddy Day  You are my comfort.",
       11: "🤞 Promise Day  I promise to choose you every day.",
-      12: "🤗 Hug Day  If I could, I’d hug you a little longer today.",
-      13: "💋 Kiss Day  One kiss, a thousand unspoken feelings."
+      12: "🤗 Hug Day  Wish I could hug you today.",
+      13: "💋 Kiss Day  One kiss, a thousand feelings."
     };
 
-    return messages[day] || `💖 You mean more to me than words can say, ${displayName}.`;
+    return messages[day] || `💖 You mean more to me than words can say, ${name}.`;
   }
 
-  return `💖 You mean more to me than words can say, ${displayName}.`;
+  return `💖 You mean more to me than words can say, ${name}.`;
 }
 
-/* set top message */
+/* set top text */
 title.innerText = getDailyMessage();
 
 /* ===============================
-   😈 NO BUTTON – FULL SCREEN RUN
-   (size SAME as Yes, only moves)
+   😈 NO BUTTON — FAST MOVE (CARD KE ANDAR)
 ================================ */
-function moveNoAnywhere() {
-  const padding = 10;
-
-  const maxX = window.innerWidth - noBtn.offsetWidth - padding;
-  const maxY = window.innerHeight - noBtn.offsetHeight - padding;
+function moveNoFast() {
+  const maxX = buttons.offsetWidth - noBtn.offsetWidth;
+  const maxY = buttons.offsetHeight - noBtn.offsetHeight;
 
   const randomX = Math.random() * maxX;
   const randomY = Math.random() * maxY;
 
-  noBtn.style.position = "fixed"; // screen edge allowed
   noBtn.style.left = randomX + "px";
   noBtn.style.top = randomY + "px";
 }
 
-noBtn.addEventListener("mouseenter", moveNoAnywhere);
-noBtn.addEventListener("touchstart", moveNoAnywhere);
+noBtn.addEventListener("mouseenter", moveNoFast);
+noBtn.addEventListener("touchstart", moveNoFast);
 
 /* ===============================
    💖 YES → COUNTDOWN
@@ -94,24 +84,24 @@ yesBtn.addEventListener("click", () => {
       countText.innerText = count;
     } else {
       clearInterval(timer);
-      showFinalScreen();
+      finalScreen();
     }
   }, 1000);
 });
 
 /* ===============================
-   💌 FINAL SCREEN (AUTO MESSAGE)
+   💌 FINAL SCREEN
 ================================ */
-function showFinalScreen() {
-  const messageHTML = getDailyMessage().replace(/\n/g, "<br>");
+function finalScreen() {
+  const msgHTML = getDailyMessage().replace(/\n/g, "<br>");
 
   card.innerHTML = `
     <h1>❤️ It’s Always You ❤️</h1>
 
-    <p style="margin-top:18px;line-height:1.8;color:#eee;">
-      ${messageHTML}
+    <p style="margin-top:18px;line-height:1.7;color:#eee;">
+      ${msgHTML}
       <br><br>
-      If this made you smile even a little,
+      If this made you smile,
       send me a message. 💖
     </p>
 
@@ -126,7 +116,7 @@ function showFinalScreen() {
 }
 
 /* ===============================
-   ❤️ FLOATING HEARTS
+   ❤️ HEARTS
 ================================ */
 function startHearts() {
   setInterval(() => {
@@ -136,5 +126,5 @@ function startHearts() {
     h.style.left = Math.random() * 100 + "vw";
     document.body.appendChild(h);
     setTimeout(() => h.remove(), 6000);
-  }, 200);
+  }, 250);
 }

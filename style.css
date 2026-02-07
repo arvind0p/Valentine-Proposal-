@@ -1,119 +1,104 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Segoe UI', sans-serif;
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Segoe UI',sans-serif;
 }
 
-body {
-  height: 100vh;
-  overflow: hidden;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 1s ease;
+body{
+  height:100vh;
+  background:radial-gradient(circle,#1a001f,#000);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  color:#fff;
+  transition:background 1s ease;
 }
 
-/* Tap screen */
-#tapToStart {
-  position: fixed;
-  inset: 0;
-  background: radial-gradient(circle, #1a001f, #000);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
+.container{
+  background:rgba(0,0,0,0.65);
+  padding:40px;
+  border-radius:25px;
+  width:380px;
+  text-align:center;
+  box-shadow:0 0 40px rgba(255,0,120,.5);
+  z-index:2;
 }
 
-#tapToStart p {
-  font-size: 20px;
-  color: #ff4d9d;
-  animation: pulse 1.5s infinite;
+h1{
+  margin-bottom:35px;
+  color:#ff4d9d;
+  text-shadow:0 0 15px rgba(255,77,157,.8);
 }
 
-@keyframes pulse {
-  0% { transform: scale(1); opacity: .6; }
-  50% { transform: scale(1.1); opacity: 1; }
-  100% { transform: scale(1); opacity: .6; }
+.buttons{
+  position:relative;
+  height:130px;
 }
 
-/* Main container */
-.container {
-  background: rgba(0,0,0,0.65);
-  padding: 40px;
-  border-radius: 25px;
-  width: 380px;
-  text-align: center;
-  box-shadow: 0 0 40px rgba(255, 0, 120, 0.5);
-  z-index: 2;
+button{
+  width:140px;
+  padding:14px 0;
+  border-radius:40px;
+  border:none;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
 }
 
-h1 {
-  margin-bottom: 35px;
-  text-shadow: 0 0 15px rgba(255,255,255,0.6);
+#yesBtn{
+  background:linear-gradient(135deg,#ff4d9d,#ff0066);
+  color:#fff;
+  position:absolute;
+  left:0;
+  bottom:0;
 }
 
-/* Buttons */
-.buttons {
-  display: flex;
-  justify-content: space-between;
-  position: relative;
-  height: 120px;
+#noBtn{
+  background:#333;
+  color:#aaa;
+  position:absolute;
+  right:0;
+  bottom:0;
 }
 
-button {
-  padding: 14px 32px;
-  border-radius: 40px;
-  border: none;
-  font-size: 16px;
-  cursor: pointer;
-  font-weight: bold;
+/* countdown */
+#countdown{margin-top:25px}
+#countText{
+  font-size:60px;
+  color:#ff4d9d;
+}
+.by{
+  display:block;
+  font-size:14px;
+  opacity:.8;
+  margin-bottom:10px;
+}
+.hidden{display:none}
+
+/* hearts */
+.heart{
+  position:fixed;
+  bottom:-20px;
+  font-size:22px;
+  animation:floatUp 6s linear forwards;
+}
+@keyframes floatUp{
+  from{transform:translateY(0);opacity:1}
+  to{transform:translateY(-110vh);opacity:0}
 }
 
-#yesBtn {
-  background: linear-gradient(135deg, #ff4d9d, #ff0066);
-  color: white;
+/* whatsapp button */
+.whatsapp{
+  margin-top:30px;
+  display:inline-block;
+  padding:14px 28px;
+  border-radius:40px;
+  background:#25D366;
+  color:#fff;
+  text-decoration:none;
+  font-weight:bold;
+  box-shadow:0 0 20px rgba(37,211,102,.6);
 }
-
-#noBtn {
-  background: #333;
-  color: #aaa;
-  position: absolute;
-  right: 0;
-  bottom: 0;
-}
-
-/* Countdown */
-#countdown {
-  margin-top: 25px;
-}
-
-#countText {
-  font-size: 60px;
-  color: #ff4d9d;
-}
-
-.by {
-  display: block;
-  font-size: 14px;
-  opacity: 0.8;
-  margin-bottom: 10px;
-}
-
-.hidden {
-  display: none;
-}
-
-/* Hearts */
-.heart {
-  position: fixed;
-  bottom: -20px;
-  font-size: 22px;
-  animation: floatUp 6s linear forwards;
-}
-
-@keyframes floatUp {
-  from { transform: translateY(0) scale(1); opacity: 1; }
-  to { transform: translateY(-110vh) scale(1.6); opacity: 0; }
-}
+.whatsapp:hover{opacity:.9}

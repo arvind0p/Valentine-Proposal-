@@ -1,58 +1,87 @@
 const noBtn = document.getElementById("noBtn");
-const container = document.querySelector(".buttons");
+const yesBtn = document.getElementById("yesBtn");
+const buttons = document.querySelector(".buttons");
+const countdownBox = document.getElementById("countdown");
+const countText = document.getElementById("countText");
+const container = document.querySelector(".container");
 
 let speed = 1;
 
-// NO button move function
-function moveNoButton() {
-  speed += 0.4; // 🔥 speed increases every time
+/* NO button runaway */
+function moveNo() {
+  speed += 0.4;
 
-  const maxX = container.offsetWidth - noBtn.offsetWidth;
-  const maxY = container.offsetHeight - noBtn.offsetHeight;
+  const maxX = buttons.offsetWidth - noBtn.offsetWidth;
+  const maxY = buttons.offsetHeight - noBtn.offsetHeight;
 
-  const randomX = (Math.random() * maxX * speed) % maxX;
-  const randomY = (Math.random() * maxY * speed) % maxY;
+  const x = (Math.random() * maxX * speed) % maxX;
+  const y = (Math.random() * maxY * speed) % maxY;
 
-  noBtn.style.left = randomX + "px";
-  noBtn.style.top = randomY + "px";
+  noBtn.style.left = x + "px";
+  noBtn.style.top = y + "px";
 }
 
-// Desktop hover
-noBtn.addEventListener("mouseenter", moveNoButton);
+noBtn.addEventListener("mouseenter", moveNo);
+noBtn.addEventListener("touchstart", moveNo);
 
-// Mobile touch
-noBtn.addEventListener("touchstart", moveNoButton);
+/* YES click */
+yesBtn.addEventListener("click", () => {
+  buttons.style.display = "none";
+  countdownBox.classList.remove("hidden");
 
-// YES button
-function yesClicked() {
-  document.querySelector(".container").innerHTML = `
-    <h1>💖 You Said YES 💖</h1>
-    <p style="margin-top:20px;font-size:16px;line-height:1.7;">
-      From the moment you entered my life, everything felt warmer,
-      brighter, and more meaningful. You became my favorite thought,
-      my comfort on hard days, and my smile on the best ones.
-      I don’t just want a moment with you — I want every tomorrow,
-      every laugh, every heartbeat together.
-      Thank you for choosing me and for making my heart feel at home.
-      Every day feels special with you, my sweetie ❤️
+  let count = 3;
+  countText.innerText = count;
+
+  const timer = setInterval(() => {
+    count--;
+    if (count > 0) {
+      countText.innerText = count;
+    } else {
+      clearInterval(timer);
+      showFinalMessage();
+    }
+  }, 1000);
+});
+
+/* Final romantic screen */
+function showFinalMessage() {
+  container.innerHTML = `
+    <h1>❤️ It’s You ❤️</h1>
+    <p style="margin-top:20px; line-height:1.8; font-size:16px;">
+      In a world full of chaos, you are my calm.
+      In a sky full of stars, you are my favorite light.
+      I don’t want perfect days — I want real ones,
+      with you, every single time.
+      This isn’t just a question…
+      it’s my heart choosing you. 💖
     </p>
   `;
 
   startHearts();
+  startSparkles();
 }
 
-// ❤️ Hearts animation
+/* Hearts generator */
 function startHearts() {
   setInterval(() => {
     const heart = document.createElement("div");
     heart.className = "heart";
     heart.innerHTML = "❤️";
     heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = Math.random() * 20 + 15 + "px";
-
-    document.getElementById("hearts").appendChild(heart);
-
-    setTimeout(() => heart.remove(), 5000);
-  }, 300);
+    heart.style.fontSize = Math.random() * 25 + 15 + "px";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 6000);
+  }, 200);
 }
 
+/* Sparkles */
+function startSparkles() {
+  setInterval(() => {
+    const s = document.createElement("div");
+    s.className = "sparkle";
+    s.style.left = Math.random() * 100 + "vw";
+    s.style.top = Math.random() * 100 + "vh";
+    document.body.appendChild(s);
+    setTimeout(() => s.remove(), 2000);
+  }, 100);
+}

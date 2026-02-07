@@ -7,61 +7,93 @@
 
 body {
   height: 100vh;
-  background: linear-gradient(135deg, #ff758c, #ff7eb3);
+  background: radial-gradient(circle at top, #1a001f, #000);
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  color: #fff;
 }
 
+/* Main box */
 .container {
-  background: white;
+  background: rgba(20, 0, 25, 0.85);
   padding: 40px;
-  border-radius: 20px;
+  border-radius: 25px;
+  width: 380px;
   text-align: center;
-  width: 360px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+  box-shadow: 0 0 40px rgba(255, 0, 120, 0.4);
   position: relative;
-  z-index: 2;
+  z-index: 5;
 }
 
 h1 {
-  color: #ff3366;
+  color: #ff4d9d;
   margin-bottom: 30px;
+  text-shadow: 0 0 15px rgba(255, 77, 157, 0.8);
 }
 
+/* Buttons */
 .buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
   position: relative;
-  height: 140px;
+  height: 120px;
 }
 
 button {
-  padding: 12px 26px;
+  padding: 14px 32px;
   font-size: 16px;
   border: none;
-  border-radius: 30px;
+  border-radius: 40px;
   cursor: pointer;
+  font-weight: bold;
 }
 
 #yesBtn {
-  background: #ff3366;
-  color: white;
+  background: linear-gradient(135deg, #ff4d9d, #ff0066);
+  color: #fff;
+  box-shadow: 0 0 20px rgba(255, 0, 120, 0.7);
 }
 
 #noBtn {
-  background: #ddd;
+  background: #333;
+  color: #aaa;
   position: absolute;
-  left: 160px;
-  top: 70px;
+  right: 0;
+  bottom: 0;
 }
 
-/* ❤️ Floating hearts */
+/* Countdown */
+#countdown {
+  margin-top: 30px;
+}
+
+#countText {
+  font-size: 60px;
+  color: #ff4d9d;
+  text-shadow: 0 0 25px rgba(255, 77, 157, 1);
+}
+
+.by {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 10px;
+  opacity: 0.8;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Hearts */
 .heart {
   position: fixed;
   bottom: -20px;
-  font-size: 20px;
-  animation: floatUp 5s linear forwards;
-  color: #ff3366;
+  color: #ff2f92;
+  animation: floatUp 6s linear forwards;
+  pointer-events: none;
 }
 
 @keyframes floatUp {
@@ -70,7 +102,23 @@ button {
     opacity: 1;
   }
   to {
-    transform: translateY(-100vh) scale(1.6);
+    transform: translateY(-110vh) scale(1.6);
     opacity: 0;
   }
+}
+
+/* Sparkles */
+.sparkle {
+  position: fixed;
+  width: 4px;
+  height: 4px;
+  background: pink;
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: fade 2s linear forwards;
+}
+
+@keyframes fade {
+  from { opacity: 1; }
+  to { opacity: 0; }
 }

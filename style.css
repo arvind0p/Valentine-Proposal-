@@ -7,15 +7,38 @@
 
 body {
   height: 100vh;
+  overflow: hidden;
+  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
-  color: #fff;
   transition: background 1s ease;
 }
 
-/* container */
+/* Tap screen */
+#tapToStart {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle, #1a001f, #000);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+#tapToStart p {
+  font-size: 20px;
+  color: #ff4d9d;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: .6; }
+  50% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(1); opacity: .6; }
+}
+
+/* Main container */
 .container {
   background: rgba(0,0,0,0.65);
   padding: 40px;
@@ -31,7 +54,7 @@ h1 {
   text-shadow: 0 0 15px rgba(255,255,255,0.6);
 }
 
-/* buttons */
+/* Buttons */
 .buttons {
   display: flex;
   justify-content: space-between;
@@ -61,7 +84,7 @@ button {
   bottom: 0;
 }
 
-/* countdown */
+/* Countdown */
 #countdown {
   margin-top: 25px;
 }
@@ -82,7 +105,7 @@ button {
   display: none;
 }
 
-/* hearts */
+/* Hearts */
 .heart {
   position: fixed;
   bottom: -20px;
@@ -91,12 +114,6 @@ button {
 }
 
 @keyframes floatUp {
-  from {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-  }
-  to {
-    transform: translateY(-110vh) scale(1.6);
-    opacity: 0;
-  }
+  from { transform: translateY(0) scale(1); opacity: 1; }
+  to { transform: translateY(-110vh) scale(1.6); opacity: 0; }
 }

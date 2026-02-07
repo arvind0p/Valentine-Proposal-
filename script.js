@@ -6,59 +6,53 @@ const buttons = document.querySelector(".buttons");
 const countdownBox = document.getElementById("countdown");
 const countText = document.getElementById("countText");
 const container = document.querySelector(".container");
+const tapScreen = document.getElementById("tapToStart");
+const mainApp = document.getElementById("mainApp");
 
 let speed = 1;
 
-/* 💘 Valentine week message + background */
+/* FULLSCREEN + LOCK */
+tapScreen.addEventListener("click", () => {
+  tapScreen.style.display = "none";
+  mainApp.classList.remove("hidden");
+
+  if (document.documentElement.requestFullscreen) {
+    document.documentElement.requestFullscreen();
+  }
+
+  if (screen.orientation && screen.orientation.lock) {
+    screen.orientation.lock("portrait").catch(() => {});
+  }
+
+  applyValentineTheme();
+});
+
+/* Valentine week theme */
 function applyValentineTheme() {
-  const today = new Date();
-  const day = today.getDate();
-  const month = today.getMonth() + 1;
+  const d = new Date();
+  const day = d.getDate();
+  const month = d.getMonth() + 1;
 
   if (month === 2) {
-    switch (day) {
-      case 7:
-        title.innerText = "🌹 Rose Day — Every rose reminds me of you";
-        body.style.background = "radial-gradient(circle, #7b001c, #000)";
-        break;
-      case 8:
-        title.innerText = "💍 Propose Day — Will you be mine?";
-        body.style.background = "radial-gradient(circle, #3a003a, #000)";
-        break;
-      case 9:
-        title.innerText = "🍫 Chocolate Day — Life feels sweeter with you";
-        body.style.background = "radial-gradient(circle, #3b1f0f, #000)";
-        break;
-      case 10:
-        title.innerText = "🧸 Teddy Day — You are my comfort";
-        body.style.background = "radial-gradient(circle, #4b2c2c, #000)";
-        break;
-      case 11:
-        title.innerText = "🤞 Promise Day — I promise you my heart";
-        body.style.background = "radial-gradient(circle, #002b3b, #000)";
-        break;
-      case 12:
-        title.innerText = "🤗 Hug Day — Wish I could hug you today";
-        body.style.background = "radial-gradient(circle, #4d0033, #000)";
-        break;
-      case 13:
-        title.innerText = "💋 Kiss Day — One kiss, a thousand feelings";
-        body.style.background = "radial-gradient(circle, #5a001a, #000)";
-        break;
-      case 14:
-        title.innerText = "❤️ Happy Valentine’s Day, my love ❤️";
-        body.style.background = "radial-gradient(circle, #b30059, #000)";
-        break;
-      default:
-        title.innerText = "💖 You mean more to me than words can say";
-        body.style.background = "radial-gradient(circle, #1a001f, #000)";
+    const themes = {
+      7: ["🌹 Rose Day — Every rose reminds me of you", "#7b001c"],
+      8: ["💍 Propose Day — Will you be mine?", "#3a003a"],
+      9: ["🍫 Chocolate Day — Life feels sweeter with you", "#3b1f0f"],
+      10: ["🧸 Teddy Day — You are my comfort", "#4b2c2c"],
+      11: ["🤞 Promise Day — I promise you my heart", "#002b3b"],
+      12: ["🤗 Hug Day — Wish I could hug you today", "#4d0033"],
+      13: ["💋 Kiss Day — One kiss, a thousand feelings", "#5a001a"],
+      14: ["❤️ Happy Valentine’s Day, my love ❤️", "#b30059"]
+    };
+
+    if (themes[day]) {
+      title.innerText = themes[day][0];
+      body.style.background = `radial-gradient(circle, ${themes[day][1]}, #000)`;
     }
   }
 }
 
-applyValentineTheme();
-
-/* 😈 NO button runaway */
+/* NO button runaway */
 function moveNo() {
   speed += 0.4;
   const maxX = buttons.offsetWidth - noBtn.offsetWidth;
@@ -70,7 +64,7 @@ function moveNo() {
 noBtn.addEventListener("mouseenter", moveNo);
 noBtn.addEventListener("touchstart", moveNo);
 
-/* 💖 YES click → countdown */
+/* YES click */
 yesBtn.addEventListener("click", () => {
   buttons.style.display = "none";
   countdownBox.classList.remove("hidden");
@@ -89,22 +83,21 @@ yesBtn.addEventListener("click", () => {
   }, 1000);
 });
 
-/* 💌 Final screen */
+/* Final message */
 function showFinal() {
   container.innerHTML = `
     <h1>❤️ It’s Always You ❤️</h1>
     <p style="margin-top:20px;line-height:1.8;">
-      From rose to promise, from hugs to kisses,
-      every day of this week leads me to one truth —
-      my heart chooses you, again and again.
-      This is not just Valentine’s Day,
-      this is me choosing you forever. 💖
+      Every day of this Valentine week leads me to you.
+      This isn’t just a moment,
+      this is my heart choosing you —
+      today, tomorrow, always. 💖
     </p>
   `;
   startHearts();
 }
 
-/* ❤️ hearts */
+/* Hearts */
 function startHearts() {
   setInterval(() => {
     const h = document.createElement("div");

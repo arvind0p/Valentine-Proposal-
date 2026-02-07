@@ -2,20 +2,26 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Be My Valentine 💖</title>
+  <title>For You ❤️</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Hearts animation layer -->
+  <!-- Effects layers -->
   <div id="hearts"></div>
+  <div id="sparkles"></div>
 
   <div class="container">
-    <h1>Will you be my Valentine? 💘</h1>
+    <h1 id="title">Will you be my Valentine? ❤️</h1>
 
     <div class="buttons">
-      <button id="yesBtn" onclick="yesClicked()">Yes 😍</button>
+      <button id="yesBtn">Yes 💖</button>
       <button id="noBtn">No 🙈</button>
+    </div>
+
+    <div id="countdown" class="hidden">
+      <span class="by">By Arvind</span>
+      <h2 id="countText">3</h2>
     </div>
   </div>
 

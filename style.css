@@ -1,104 +1,35 @@
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:'Segoe UI',sans-serif;
+/* buttons wrapper */
+.buttons {
+  position: relative;
+  height: 140px;
+  margin-top: 20px;
 }
 
-body{
-  height:100vh;
-  background:radial-gradient(circle,#1a001f,#000);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow:hidden;
-  color:#fff;
-  transition:background 1s ease;
+/* common button size — BOTH SAME */
+.buttons button {
+  width: 140px;
+  height: 46px;
+  border-radius: 30px;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  position: absolute;
 }
 
-.container{
-  background:rgba(0,0,0,0.65);
-  padding:40px;
-  border-radius:25px;
-  width:380px;
-  text-align:center;
-  box-shadow:0 0 40px rgba(255,0,120,.5);
-  z-index:2;
+/* YES */
+#yesBtn {
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+  background: linear-gradient(135deg, #ff4d9d, #ff0066);
+  color: #fff;
 }
 
-h1{
-  margin-bottom:35px;
-  color:#ff4d9d;
-  text-shadow:0 0 15px rgba(255,77,157,.8);
+/* NO */
+#noBtn {
+  left: 10px;
+  top: 0;
+  background: #333;
+  color: #ccc;
 }
-
-.buttons{
-  position:relative;
-  height:130px;
-}
-
-button{
-  width:140px;
-  padding:14px 0;
-  border-radius:40px;
-  border:none;
-  font-size:16px;
-  font-weight:bold;
-  cursor:pointer;
-}
-
-#yesBtn{
-  background:linear-gradient(135deg,#ff4d9d,#ff0066);
-  color:#fff;
-  position:absolute;
-  left:0;
-  bottom:0;
-}
-
-#noBtn{
-  background:#333;
-  color:#aaa;
-  position:absolute;
-  right:0;
-  bottom:0;
-}
-
-/* countdown */
-#countdown{margin-top:25px}
-#countText{
-  font-size:60px;
-  color:#ff4d9d;
-}
-.by{
-  display:block;
-  font-size:14px;
-  opacity:.8;
-  margin-bottom:10px;
-}
-.hidden{display:none}
-
-/* hearts */
-.heart{
-  position:fixed;
-  bottom:-20px;
-  font-size:22px;
-  animation:floatUp 6s linear forwards;
-}
-@keyframes floatUp{
-  from{transform:translateY(0);opacity:1}
-  to{transform:translateY(-110vh);opacity:0}
-}
-
-/* whatsapp button */
-.whatsapp{
-  margin-top:30px;
-  display:inline-block;
-  padding:14px 28px;
-  border-radius:40px;
-  background:#25D366;
-  color:#fff;
-  text-decoration:none;
-  font-weight:bold;
-  box-shadow:0 0 20px rgba(37,211,102,.6);
-}
-.whatsapp:hover{opacity:.9}

@@ -34,7 +34,7 @@ function yesClicked() {
       I don’t just want a moment with you — I want every tomorrow,
       every laugh, every heartbeat together.
       Thank you for choosing me and for making my heart feel at home.
-      Happy Valentine’s Day, my love ❤️
+      Every day feels special with you, my sweetie ❤️
     </p>
   `;
 
@@ -55,3 +55,4 @@ function startHearts() {
     setTimeout(() => heart.remove(), 5000);
   }, 300);
 }
+

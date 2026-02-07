@@ -15,6 +15,7 @@ function getName() {
 
 /* ===============================
    DATE-WISE VALENTINE MESSAGE
+   (7–14 FEB FULLY INTEGRATED)
 ================================ */
 function getFinalMessage() {
   const d = new Date();
@@ -24,20 +25,28 @@ function getFinalMessage() {
 
   if (m === 2) {
     const messages = {
-      7: `🌹 Rose Day — Every rose I see reminds me of you, ${name}, and the gentle way you’ve made my heart bloom with love.`,
-      8: `💍 Propose Day — My heart chose you a long time ago, ${name}, and it still chooses you every single day.`,
-      9: `🍫 Chocolate Day — Life feels sweeter with you in it, ${name}, like happiness wrapped in love.`,
-      10: `🧸 Teddy Day — You are my comfort, my safe place, ${name}, and my peace.`,
-      11: `🤞 Promise Day — I promise to care for you, support you, and choose you every single day, ${name}.`,
-      12: `🤗 Hug Day — I wish I could pull you into a warm hug today, ${name}, and never let go.`,
-      13: `💋 Kiss Day — One soft kiss from you, ${name}, and my heart melts into a thousand happy feelings.`,
-      14: `❤️ Happy Valentine’s Day ❤️<br><br>
+      7: `🌹 <b>Rose Day</b> — Every rose I see reminds me of you, ${name}, and the gentle way you’ve made my heart bloom with love.`,
+
+      8: `💍 <b>Propose Day</b> — My heart chose you a long time ago, ${name}, and it still chooses you every single day.`,
+
+      9: `🍫 <b>Chocolate Day</b> — Life feels sweeter with you in it, ${name}, like happiness wrapped in love.`,
+
+      10: `🧸 <b>Teddy Day</b> — You are my comfort, my safe place, ${name}, and my peace.`,
+
+      11: `🤞 <b>Promise Day</b> — I promise to care for you, support you, and choose you every single day, ${name}.`,
+
+      12: `🤗 <b>Hug Day</b> — I wish I could pull you into a warm hug today, ${name}, and never let go.`,
+
+      13: `💋 <b>Kiss Day</b> — One soft kiss from you, ${name}, and my heart melts into a thousand happy feelings.`,
+
+      14: `❤️ <b>Happy Valentine’s Day</b> ❤️<br><br>
           ${name},<br><br>
           From the moment you came into my life, everything felt warmer and brighter.
           You became my favorite thought, my safest place, and my happiest feeling.<br><br>
           With you, love feels easy. With you, smiles feel real.
           My heart chooses you — today, tomorrow, and always. 💖`
     };
+
     return messages[day] || `💖 Thinking of you always, ${name}.`;
   }
 
@@ -45,14 +54,14 @@ function getFinalMessage() {
 }
 
 /* ===============================
-   NO BUTTON — RUNAWAY
+   NO BUTTON — RUNAWAY ONLY
 ================================ */
 function moveNo() {
   noBtn.style.position = "fixed";
-  const x = Math.random() * (window.innerWidth - 140);
-  const y = Math.random() * (window.innerHeight - 60);
-  noBtn.style.left = x + "px";
-  noBtn.style.top = y + "px";
+  noBtn.style.left =
+    Math.random() * (window.innerWidth - noBtn.offsetWidth) + "px";
+  noBtn.style.top =
+    Math.random() * (window.innerHeight - noBtn.offsetHeight) + "px";
 }
 
 noBtn.addEventListener("mouseenter", moveNo);
@@ -73,7 +82,7 @@ yesBtn.addEventListener("click", () => {
     countNum.innerText = seq[i];
 
     if (seq[i] === 1) {
-      heartBlast(); // blast hearts on 1
+      heartBlastRandom();
     }
 
     i++;
@@ -82,28 +91,29 @@ yesBtn.addEventListener("click", () => {
       setTimeout(() => {
         overlay.classList.add("hidden");
         finalScreen();
-      }, 3000); // wait for blast
+      }, 3000);
     }
   }, 900);
 });
 
 /* ===============================
-   HEART BLAST (3 seconds)
+   RANDOM HEART BLAST (3s)
 ================================ */
-function heartBlast() {
+function heartBlastRandom() {
+  const start = Date.now();
   const blast = setInterval(() => {
     for (let i = 0; i < 12; i++) {
       const h = document.createElement("div");
       h.className = "heart";
       h.innerText = ["❤️", "💖", "💘", "💕", "💝"][Math.floor(Math.random() * 5)];
-      h.style.left = "50vw";
-      h.style.top = "50vh";
+      h.style.left = Math.random() * window.innerWidth + "px";
+      h.style.top = Math.random() * window.innerHeight + "px";
+      h.style.fontSize = 16 + Math.random() * 26 + "px";
       document.body.appendChild(h);
       setTimeout(() => h.remove(), 6000);
     }
+    if (Date.now() - start > 3000) clearInterval(blast);
   }, 150);
-
-  setTimeout(() => clearInterval(blast), 3000);
 }
 
 /* ===============================
@@ -131,7 +141,7 @@ function finalScreen() {
 }
 
 /* ===============================
-   INFINITE HEARTS (FINAL PAGE)
+   INFINITE FLOATING HEARTS
 ================================ */
 function startInfiniteHearts() {
   setInterval(() => {
@@ -139,7 +149,8 @@ function startInfiniteHearts() {
     h.className = "heart";
     h.innerText = ["❤️", "💖", "💘", "💕", "💝"][Math.floor(Math.random() * 5)];
     h.style.left = Math.random() * 100 + "vw";
+    h.style.fontSize = 14 + Math.random() * 22 + "px";
     document.body.appendChild(h);
     setTimeout(() => h.remove(), 6000);
-  }, 200);
+  }, 220);
 }

@@ -1,3 +1,6 @@
+/* ===============================
+   ELEMENTS
+================================ */
 const title = document.getElementById("title");
 const noBtn = document.getElementById("noBtn");
 const yesBtn = document.getElementById("yesBtn");
@@ -10,20 +13,40 @@ const card = document.getElementById("card");
    NAME FROM URL (?name=Rishika)
 ================================ */
 function getNameFromURL() {
-  const p = new URLSearchParams(window.location.search);
-  return p.get("name");
+  const params = new URLSearchParams(window.location.search);
+  return params.get("name");
 }
 
 /* ===============================
-   DAILY VALENTINE MESSAGE
+   VALENTINE WEEK MESSAGES (7–13)
+================================ */
+const messages = {
+  7: "🌹 Rose Day — Every rose I see reminds me of you, your sweet smile, and the gentle way you’ve made my heart bloom with love.",
+
+  8: "💍 Propose Day — My heart chose you a long time ago, and every single day it falls for you all over again, without any doubt.",
+
+  9: "🍫 Chocolate Day — Life feels so much sweeter with you in it, like every moment is wrapped in love and happiness.",
+
+  10: "🧸 Teddy Day — You are my comfort, my safe place, and the one who makes even the simplest days feel special.",
+
+  11: "🤞 Promise Day — I promise to care for you, support you, and choose you with the same love every single day.",
+
+  12: "🤗 Hug Day — I really wish I could pull you into a warm hug today and hold you just a little longer.",
+
+  13: "💋 Kiss Day — One soft kiss from you, and my heart would melt into a thousand happy feelings."
+};
+
+/* ===============================
+   DAILY MESSAGE LOGIC
 ================================ */
 function getDailyMessage() {
   const d = new Date();
   const day = d.getDate();
-  const m = d.getMonth() + 1;
+  const month = d.getMonth() + 1;
   const name = getNameFromURL() || "my love";
 
-  if (m === 2) {
+  if (month === 2) {
+    // 14 Feb special
     if (day === 14) {
       return `❤️ Happy Valentine’s Day, ${name} ❤️
 
@@ -32,25 +55,18 @@ everything felt warmer and more meaningful.
 My heart chooses you — today and always. 💖`;
     }
 
-    const msg = {
-      7: "🌹 Rose Day — Every single rose reminds me of you, your smile, your warmth, and the love that quietly blooms in my heart.",
-      8: "💍 Propose Day — My heart chose you long ago, and every beat still chooses you without a second thought.",
-      9: "🍫 Chocolate Day — Life feels sweeter with you in it, like every moment is filled with a little more joy and love.",
-     10: "🧸 Teddy Day — You are my comfort, my safe place, the one who makes everything feel okay.",
-     11: "🤞 Promise Day — I promise to stand by you, choose you, and care for you every single day.",
-     12: "🤗 Hug Day — I wish I could wrap you in a warm hug today and let the world fade away.",
-     13: "💋 Kiss Day — One kiss from you holds a thousand emotions my words could never explain."
-
-    };
-
-    return msg[day] || `💖 You mean more to me than words can say, ${name}.`;
+    return messages[day] || `💖 You mean more to me than words can say, ${name}.`;
   }
 
   return `💖 You mean more to me than words can say, ${name}.`;
 }
 
-/* set initial title */
-title.innerText = getDailyMessage();
+/* ===============================
+   SET INITIAL TITLE
+================================ */
+if (title) {
+  title.innerText = getDailyMessage();
+}
 
 /* ===============================
    NO BUTTON MOVE (same size)
@@ -78,28 +94,28 @@ yesBtn.addEventListener("click", () => {
   let c = 3;
   countText.innerText = c;
 
-  const t = setInterval(() => {
+  const timer = setInterval(() => {
     c--;
     if (c > 0) {
       countText.innerText = c;
     } else {
-      clearInterval(t);
+      clearInterval(timer);
       showFinalScreen();
     }
   }, 1000);
 });
 
 /* ===============================
-   FINAL SCREEN (By Arvind FIXED)
+   FINAL SCREEN
 ================================ */
 function showFinalScreen() {
-  const msg = getDailyMessage().replace(/\n/g, "<br>");
+  const msgHTML = getDailyMessage().replace(/\n/g, "<br>");
 
   card.innerHTML = `
     <h1>❤️ It’s Always You ❤️</h1>
 
     <p style="margin-top:18px;line-height:1.7;color:#eee;">
-      ${msg}
+      ${msgHTML}
     </p>
 
     <div style="
@@ -126,11 +142,14 @@ function showFinalScreen() {
 ================================ */
 function startHearts() {
   setInterval(() => {
-    const h = document.createElement("div");
-    h.className = "heart";
-    h.innerHTML = "❤️";
-    h.style.left = Math.random() * 100 + "vw";
-    document.body.appendChild(h);
-    setTimeout(() => h.remove(), 6000);
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+      heart.remove();
+    }, 6000);
   }, 250);
 }

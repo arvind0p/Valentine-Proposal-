@@ -36,7 +36,6 @@ body{
 h2{font-size:20px;margin-bottom:6px;}
 p{font-size:14px;color:#555;margin-bottom:25px;}
 
-/* buttons */
 .btn-row{
   display:flex;
   justify-content:center;
@@ -65,7 +64,6 @@ p{font-size:14px;color:#555;margin-bottom:25px;}
   position:relative;
 }
 
-/* overlay */
 .overlay{
   position:absolute;
   inset:0;
@@ -79,9 +77,8 @@ p{font-size:14px;color:#555;margin-bottom:25px;}
 
 .hidden{display:none;}
 
-/* heart countdown */
 .heart-wrap{
-  font-size:80px;
+  font-size:90px;
   position:relative;
   color:#ff2e63;
 }
@@ -96,7 +93,6 @@ p{font-size:14px;color:#555;margin-bottom:25px;}
   font-weight:800;
 }
 
-/* heartbeat */
 .heart-beat{
   animation:beat .8s infinite;
 }
@@ -113,7 +109,6 @@ p{font-size:14px;color:#555;margin-bottom:25px;}
   color:#ff4d6d;
 }
 
-/* final text */
 .final-text{
   margin-top:15px;
   line-height:1.7;
@@ -121,7 +116,6 @@ p{font-size:14px;color:#555;margin-bottom:25px;}
   font-weight:600;
 }
 
-/* whatsapp */
 .whatsapp{
   margin-top:18px;
   display:inline-block;
@@ -133,12 +127,10 @@ p{font-size:14px;color:#555;margin-bottom:25px;}
   text-decoration:none;
 }
 
-/* floating hearts */
 .heart{
   position:fixed;
-  font-size:22px;
-  animation:floatUp 6s linear forwards;
   pointer-events:none;
+  animation:floatUp 6s linear forwards;
 }
 
 @keyframes floatUp{

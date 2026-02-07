@@ -9,7 +9,7 @@ const card = document.getElementById("card");
 /* ===============================
    NAME FROM URL (?name=Rishika)
 ================================ */
-function getNameFromURL(){
+function getNameFromURL() {
   const p = new URLSearchParams(window.location.search);
   return p.get("name");
 }
@@ -17,14 +17,14 @@ function getNameFromURL(){
 /* ===============================
    DAILY VALENTINE MESSAGE
 ================================ */
-function getDailyMessage(){
+function getDailyMessage() {
   const d = new Date();
   const day = d.getDate();
   const m = d.getMonth() + 1;
   const name = getNameFromURL() || "my love";
 
-  if(m === 2){
-    if(day === 14){
+  if (m === 2) {
+    if (day === 14) {
       return `❤️ Happy Valentine’s Day, ${name} ❤️
 
 From the moment you came into my life,
@@ -33,13 +33,14 @@ My heart chooses you — today and always. 💖`;
     }
 
     const msg = {
-      7:"🌹 Rose Day — Every rose reminds me of you.",
-      8:"💍 Propose Day — My heart has already chosen you.",
-      9:"🍫 Chocolate Day — Life feels sweeter with you.",
-      10:"🧸 Teddy Day — You are my comfort.",
-      11:"🤞 Promise Day — I promise to choose you every day.",
-      12:"🤗 Hug Day — Wish I could hug you today.",
-      13:"💋 Kiss Day — One kiss, a thousand feelings."
+      7: "🌹 Rose Day — Every single rose reminds me of you, your smile, your warmth, and the love that quietly blooms in my heart.",
+      8: "💍 Propose Day — My heart chose you long ago, and every beat still chooses you without a second thought.",
+      9: "🍫 Chocolate Day — Life feels sweeter with you in it, like every moment is filled with a little more joy and love.",
+     10: "🧸 Teddy Day — You are my comfort, my safe place, the one who makes everything feel okay.",
+     11: "🤞 Promise Day — I promise to stand by you, choose you, and care for you every single day.",
+     12: "🤗 Hug Day — I wish I could wrap you in a warm hug today and let the world fade away.",
+     13: "💋 Kiss Day — One kiss from you holds a thousand emotions my words could never explain."
+
     };
 
     return msg[day] || `💖 You mean more to me than words can say, ${name}.`;
@@ -48,51 +49,51 @@ My heart chooses you — today and always. 💖`;
   return `💖 You mean more to me than words can say, ${name}.`;
 }
 
-/* set top message */
+/* set initial title */
 title.innerText = getDailyMessage();
 
 /* ===============================
    NO BUTTON MOVE (same size)
 ================================ */
-function moveNo(){
+function moveNo() {
   const rect = buttons.getBoundingClientRect();
   const maxX = rect.width - noBtn.offsetWidth;
   const maxY = rect.height + 60;
 
   noBtn.style.position = "absolute";
   noBtn.style.left = Math.random() * maxX + "px";
-  noBtn.style.top  = Math.random() * maxY - 30 + "px";
+  noBtn.style.top = Math.random() * maxY - 30 + "px";
 }
 
 noBtn.addEventListener("mouseenter", moveNo);
 noBtn.addEventListener("touchstart", moveNo);
 
 /* ===============================
-   YES → COUNTDOWN (By Arvind visible)
+   YES → COUNTDOWN
 ================================ */
-yesBtn.addEventListener("click", ()=>{
+yesBtn.addEventListener("click", () => {
   buttons.style.display = "none";
   countdown.classList.remove("hidden");
 
   let c = 3;
   countText.innerText = c;
 
-  const t = setInterval(()=>{
+  const t = setInterval(() => {
     c--;
-    if(c > 0){
+    if (c > 0) {
       countText.innerText = c;
-    }else{
+    } else {
       clearInterval(t);
-      finalScreen();
+      showFinalScreen();
     }
-  },1000);
+  }, 1000);
 });
 
 /* ===============================
-   FINAL SCREEN (clean)
+   FINAL SCREEN (By Arvind FIXED)
 ================================ */
-function finalScreen(){
-  const msg = getDailyMessage().replace(/\n/g,"<br>");
+function showFinalScreen() {
+  const msg = getDailyMessage().replace(/\n/g, "<br>");
 
   card.innerHTML = `
     <h1>❤️ It’s Always You ❤️</h1>
@@ -101,7 +102,12 @@ function finalScreen(){
       ${msg}
     </p>
 
-    <div class="by" style="margin-top:12px;">
+    <div style="
+      margin-top:10px;
+      font-size:13px;
+      color:#ff7abf;
+      opacity:0.9;
+    ">
       — By Arvind
     </div>
 
@@ -116,15 +122,15 @@ function finalScreen(){
 }
 
 /* ===============================
-   HEARTS
+   FLOATING HEARTS
 ================================ */
-function startHearts(){
-  setInterval(()=>{
+function startHearts() {
+  setInterval(() => {
     const h = document.createElement("div");
     h.className = "heart";
     h.innerHTML = "❤️";
-    h.style.left = Math.random()*100 + "vw";
+    h.style.left = Math.random() * 100 + "vw";
     document.body.appendChild(h);
-    setTimeout(()=>h.remove(),6000);
-  },250);
+    setTimeout(() => h.remove(), 6000);
+  }, 250);
 }
